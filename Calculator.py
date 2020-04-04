@@ -50,7 +50,7 @@ def popUnwanted(expressionList,unwanted):
 
 def getLastOcc(expressionList,item):
     expressionList.reverse()
-     lastOccurance=expressionList.index(item)
+    lastOccurance=expressionList.index(item)
     expressionList.reverse()
     return len(expressionList)- 1 - lastOccurance
 
