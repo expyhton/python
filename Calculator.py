@@ -48,14 +48,9 @@ def popUnwanted(expressionList,unwanted):
     expressionList = [listItem for listItem in expressionList if listItem not in unwanted]
     return expressionList
 
-
 def getLastOcc(expressionList,item):
     expressionList.reverse()
-    try:
-        lastOccurance=expressionList.index(item)
-    except ValueError:
-        expressionList.reverse()
-        return -1
+     lastOccurance=expressionList.index(item)
     expressionList.reverse()
     return len(expressionList)- 1 - lastOccurance
 
