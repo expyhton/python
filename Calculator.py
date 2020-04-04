@@ -3,7 +3,7 @@ import re
 EDMAS=["^","/","*","+","-"]
 
 def main():
-    exprList = expressionToList('((2^10-2^9)+(10*10+100/2/2)+45+10^2*(100-2))')
+    exprList = expressionToList('((-2^2)*(-2+2))-10^2*2+100+299.44')
 
     fixNegatives(exprList)
     answer = solve(exprList)
