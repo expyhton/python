@@ -4,6 +4,8 @@ EDMAS=["^","/","*","+","-"]
 
 def main():
     exprList = expressionToList('((2^10-2^9)+(10*10+100/2/2)+45+10^2*(100-2))')
+
+    fixNegatives(exprList)
     answer = solve(exprList)
     print(answer)
 
@@ -45,17 +47,25 @@ def getLastOcc(expressionList,item):
     expressionList.reverse()
     return len(expressionList)- 1 - lastOccurance
 
+def fixNegatives(expressionList):
+    for index,item in enumerate(expressionList):
+        if index==0 and item=='-':
+            popExpressionAndReplace(expressionList,index,index+1, "".join([expressionList[index],expressionList[index+1]]))
+        elif index > 0 and item=='-':
+            if expressionList[index-1] in EDMAS or expressionList[index-1] == "(":
+                popExpressionAndReplace(expressionList,index,index+1, "".join([expressionList[index],expressionList[index+1]]))
+
 def resolveIt(x,y,sign):
     if sign=="^":
-        return int(x)**int(y)
+        return float(x)**float(y)
     elif sign=="/":
-        return int(int(x)/int(y))
+        return float(x)/float(y)
     elif sign=="*":
-        return int(x)*int(y)
+        return float(x)*float(y)
     elif sign=="+":
-        return int(x)+int(y)
+        return float(x)+float(y)
     elif sign=="-":
-        return int(x)-int(y)
+        return float(x)-float(y)
 
 if __name__ == "__main__":
     main()
