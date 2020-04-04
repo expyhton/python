@@ -1,27 +1,18 @@
 import re
 
-OPENBRACKET = '('
-CLOSEBRACKET = ')'
-EXPONENT="^"
-DIVISION="/"
-MULTIPLY="*"
-PLUS="+"
-MINUS="-"
-
-EDMAS=[EXPONENT,DIVISION,MULTIPLY,PLUS,MINUS]
+EDMAS=["^","/","*","+","-"]
 
 def main():
-
     exprList = expressionToList('((2^10-2^9)+(10*10+100/2/2)+45+10^2*(100-2))')
     answer = solve(exprList)
     print(answer)
 
 def solve(expressionList):
     while len(expressionList) > 1:
-        if OPENBRACKET in expressionList:
-            indexOpenBracket = getLastOcc(expressionList,OPENBRACKET)
+        if '(' in expressionList:
+            indexOpenBracket = getLastOcc(expressionList,'(')
             for indexCloseBracket in range(indexOpenBracket,len(expressionList)):
-                if expressionList[indexCloseBracket] == CLOSEBRACKET:
+                if expressionList[indexCloseBracket] == ')':
                     break
             answer = solve(expressionList[indexOpenBracket+1:indexCloseBracket])
             popExpressionAndReplace(expressionList,indexOpenBracket,indexCloseBracket,answer)
@@ -55,15 +46,15 @@ def getLastOcc(expressionList,item):
     return len(expressionList)- 1 - lastOccurance
 
 def resolveIt(x,y,sign):
-    if sign==EXPONENT:
+    if sign=="^":
         return int(x)**int(y)
-    elif sign==DIVISION:
+    elif sign=="/":
         return int(int(x)/int(y))
-    elif sign==MULTIPLY:
+    elif sign=="*":
         return int(x)*int(y)
-    elif sign==PLUS:
+    elif sign=="+":
         return int(x)+int(y)
-    elif sign==MINUS:
+    elif sign=="-":
         return int(x)-int(y)
 
 if __name__ == "__main__":
