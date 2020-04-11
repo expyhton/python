@@ -70,7 +70,6 @@ def fixNegatives(expressionList):
             popExpressionAndReplace(expressionList,index,index+1, "".join([expressionList[index],expressionList[index+1]]))
         elif index > 0 and item=='-':
             if expressionList[index-1] in EDMAS or expressionList[index-1] == "(":
-                print(index,")", expressionList)
                 popExpressionAndReplace(expressionList,index,index+1, "".join([expressionList[index],expressionList[index+1]]))
             elif index+2 == len(expressionList):
                 expressionList[index]= '+'
