@@ -1,18 +1,17 @@
 import re
-import time
 
 EDMAS=["^","/","*","+","-"]
 
 def main():
-    tic = time.perf_counter()
-    exprList = expressionToList('(1210.44-2-2-2-(-2^2)*(-2+2))-10^2*2+100+299.44')
-
-    #fixNegatives(exprList)
-    answer = solve(exprList)
-    print(answer)
-    toc = time.perf_counter()
-
-    #print(f"{toc:0.8f}-{tic:0.8f} = {toc - tic:0.8f}")
+    while True:
+        try:
+            expression = input("Enter a math expression to solve (ie 2*2-(2/2)^2+2): ")
+            exprList = expressionToList(expression) #6%$%$^
+            answer = "{:.2f}".format(float(solve(exprList)))
+            print(answer)
+            break
+        except ValueError:
+            continue
 
 def solve(expressionList):
     while len(expressionList) > 1:
